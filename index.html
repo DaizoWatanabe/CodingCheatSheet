@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyCodingNotes</title>
+</head>
+
+<body>
+  <h1>Web Development Cheatsheet Based on Bootcamp</h1>
+  <h2>Initial setup</h2>
+  <ul>
+    <li>npm init -y</li>
+    <li>npm i express mongoose ejs method-override</li>
+    <li>touch app.js </li>
+    <ul>
+      <li>require express </li>
+      <li>execute express </li>
+      <li>require path </li>
+      <li>require method-override </li>
+      <li>require mongoose </li>
+      <li>require ejs-mate</li>
+      <li>require the models</li>
+      <li>app.engine("ejs", ejsMate);</li>
+      <li>app.set("view engine", "ejs");</li>
+      <li>app.set("views", path.join(__dirname, "views"));</li>
+      <li>app.use(express.urlencoded({ extended: true }));</li>
+      <li>app.use(methodOverride("_method"));</li>
+      <li>app.use(router)</li>
+      <li>app.all('*')</li>
+    </ul>
+
+    <!--<li>mkdir seeds </li>-->
+  </ul>
+  <h3>Mongoose Connection (on app.js)</h3>
+  <ul>
+    <li>mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+      useNewUrlParser: true,
+      //useCreateIndex: true,
+      useUnifiedTopology: true,
+      });
+    </li>
+    <li>const db = mongoose.connection;
+      db.on("error", console.error.bind(console, "connection error:"));
+      db.once("open", () => {
+      console.log("Connection established");
+      });</li>
+    <li>app.listen(3000, () => {
+      console.log("Listening on port 3000");
+      });</li>
+  </ul>
+  <h3>Models Folder</h3>
+  <ul>
+    <li>mkdir models</li>
+    <ul>
+      <li>touch modelname.js</li>
+      <li>require mongoose</li>
+      <li>{Schema} = mongoose;</li>
+      <li>modelnameSchema = new Schema({key:value variables})</li>
+      <li>module.exports = mongoose.model('modelname', modelnameSchema)</li>
+    </ul>
+
+  </ul>
+  <h3>Views Folder</h3>
+  <ul>
+    <li>mkdir views </li>
+    <ul>
+      <li>mkdir mainobjectname</li>
+      <ul>
+        <li>touch home.ejs</li>
+        <li>touch index.ejs</li>
+        <li>touch new.ejs</li>
+        <li>touch show.ejs</li>
+        <li>touch edit.ejs</li>
+      </ul>
+      <li>mkdir partials</li>
+      <ul>
+        <li>touch footer.ejs</li>
+        <li>touch header.ejs</li>
+        <li>touch navbar.ejs</li>
+      </ul>
+      <li>mkdir layouts
+        <ul>
+          <li>touch boilerplate.ejs</li>
+          <li>touch errorplate.ejs</li>
+        </ul>
+    </ul>
+    </li>
+  </ul>
+  <h3>Back-end validation</h3>
+  <ul>
+    <li>joi</li>
+  </ul>
+  <h3>Routers</h3>
+  <ul>
+    <li>mkdir routes</li>
+    <li>touch name.js</li>
+    <li>define the routes</li>
+    <li>module.exports = router</li>
+    <li>(on app.js) const {Router} = require('express')</li>
+    <li>(on app.js) const router = express.Router()</li>
+    <li>(on app.js) nameRouter = require('./routes/name')</li>
+    <li>(on app.js) app.use('/name', nameRouter)</li>
+  </ul>
+  <h3>Session</h3>
+  <ul>
+    <li>npm i express-session</li>
+    <li>(on app.js) const session = require('express-session')</li>
+    <li>const sessionConfig = {
+      secret: 'defineasecrethere',
+      resave: false,
+      saveUninitialized: false, };</li>
+    <li>app.use(session(sessionConfig)</li>
+  </ul>
+  <h3>Flash</h3>
+  <ul>
+    <li>*must have session</li>
+    <li>(on app.js) const flash = require('connect-flash')</li>
+    <li>(on app.js) app.use(flash())</li>
+  </ul>
+  <h3>Static</h3>
+  <ul>
+    <li>mkdir public</li>
+    <li>app.use(express.static(path.join(__dirname, 'public')));</li>
+  </ul>
+</body>
+
+</html>
